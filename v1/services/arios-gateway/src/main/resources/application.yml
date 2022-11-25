@@ -1,0 +1,38 @@
+
+spring:
+  cloud:
+    gateway:
+      default-filters:
+      - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        cors-configurations:
+          '[/**]':
+           allowedOrigins: "*"
+           allowedMethods: "*"
+           allowedHeaders: "*"
+      discovery:
+        locator:
+          enabled: 'true'
+          lower-case-service-id: 'true'
+      routes[0]:
+        id: user
+        uri: http://localhost:9094/
+        predicates[0]: Path=/user/**
+      routes[1]:
+        uri: http://localhost:9095/
+        id: application
+        predicates[0]: Path=/app/**
+  application:
+    name: gateway
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  profiles:
+    default: dev
+
+server:
+  port: '9090'
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

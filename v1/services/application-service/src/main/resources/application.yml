@@ -1,0 +1,32 @@
+
+server:
+  port: 9095
+  
+logging:
+  level:
+    org.springframework: ERROR
+    com.arios: DEBUG
+    
+spring:
+  profiles:
+    active: dev
+    
+  application:
+    name: application-service
+    
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/myautomation
+    username: postgres
+    password: sakthi
+    driverClassName: org.postgresql.Driver
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka

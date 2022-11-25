@@ -1,0 +1,9 @@
+
+.app-cards-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.app-dashboard-card {
+    margin-right: 3rem;
+}
